@@ -1,6 +1,6 @@
 {
   "name": "simpler-discord-paginate",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Paginate Embeds with Discord.js!",
   "main": "index.js",
   "scripts": {

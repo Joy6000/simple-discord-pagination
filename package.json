@@ -1,6 +1,6 @@
 {
   "name": "simpler-discord-paginate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Paginate Embeds with Discord.js!",
   "main": "index.js",
   "scripts": {
@@ -11,5 +11,13 @@
   "keywords": [
     "pagination",
     "discord.js"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joy6000/simple-discord-pagination.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Joy6000/simple-discord-pagination/issues"
+  },
+  "homepage": "https://github.com/Joy6000/simple-discord-pagination#readme"
 }

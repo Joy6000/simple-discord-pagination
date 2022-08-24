@@ -56,23 +56,29 @@ class pagination {
                 ]
 
                 const row = new ActionRowBuilder().addComponents(buttons)
-                const msg = await channel.send({ embeds: embeds[0], components: [row] })
+                const msg = await channel.send({ embeds: [embeds[0]], components: [row] })
 
                 client.on('interactionCreate', (int) => {
                     if (!int.isButton() && !int.message.author.id !== client.id) return
                     if (int.customId === 'back') {
-                        if (currentPage === 0) return
+                        if (currentPage === 0) currentPage = embeds.length
                         if (currentPage > 0) {
                             currentPage = currentPage - 1
                         }
                     }
                     if (int.customId === 'forward') {
-                        if (currentPage === embeds.length) return
                         if (currentPage < embeds.length) {
                             currentPage = currentPage + 1
                         }
+                        if (currentPage === embeds.length) currentPage = 0
+
                     }
                     int.message.edit({embeds: [embeds[currentPage]], components: [row]})
+                    int.reply('Page turned!')
+                    setTimeout(() => {
+                        int.deleteReply()
+                    }, 500)
+
                 })
             }
         } catch (err) {

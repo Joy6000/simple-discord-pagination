@@ -1,19 +1,23 @@
 const {embedLength} = require("discord.js");
 
 class pagination {
-    constructor({
-                    embeds = [], channel = {}, emojis = ['⬅', '➡'], timeout = 60000, buttons = false, Discord = {}, client = {}}) {
-        this.embeds = embeds
-        this.channel = channel
-        this.emojis = emojis
-        this.timeout = timeout
-        this.buttons = buttons
-        this.Discord = Discord
-        this.client = client
+    constructor(options = {
+        embeds: [],
+        channel: {},
+        emojis: [],
+        timeout: 60000,
+        client: {}
+    }) {
+        this.embeds = options.embeds
+        this.channel = options.channel
+        this.emojis = options.emojis
+        this.timeout = options.timeout
+        this.buttons = options.buttons
+        this.client = options.client
     }
     async newPaginate() {
         try {
-            const {embeds, channel, emojis, timeout, buttons, Discord, client} = this
+            const {embeds, channel, emojis, timeout, buttons, client} = this
             if (buttons === false) {
                 const msg = await channel.send({embeds: [embeds[0]]})
                 emojis.forEach(emoji => msg.react(emoji))

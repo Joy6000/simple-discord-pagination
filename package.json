@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Joy6000/simple-discord-pagination/issues"
   },
-  "homepage": "https://github.com/Joy6000/simple-discord-pagination#readme"
+  "homepage": "https://github.com/Joy6000/simple-discord-pagination#readme",
+  "dependencies": {
+    "discord.js": "^14.2.0"
+  }
 }

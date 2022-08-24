@@ -1,10 +1,10 @@
-#Discord Pagination!
-##Getting Started
+# Discord Pagination!
+## Getting Started
 ```js
 npm install simpler-discord-pagination
 ```
-##Inside your command
-###TypeScript
+## Inside your command
+### TypeScript
 ```ts
     import { pagination } from 'simpler-discord-pagination'
     const embed1 = {
@@ -16,7 +16,7 @@ npm install simpler-discord-pagination
 
     new pagination(embeds: [embed1, embed2], channel).newPagination() // channel is a textchannel object
 ```
-###JavaScript
+### JavaScript
 ```js
     const { pagination } = require('simpler-discord-pagination')
     const embed1 = {

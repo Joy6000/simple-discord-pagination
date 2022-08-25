@@ -21,7 +21,7 @@ class numberedPagination {
      */
     async paginate() {
         try {
-            let {client, channel, embeds, timeout} = this
+            let {client, channel, embeds} = this
             if (!client) return console.warn('Simpler Discord Pagination > Missing Client!')
             if (!channel) return console.warn('Simpler Discord Pagination > Missing Channel!')
             if (!embeds) embeds = placeHolderEmbeds
@@ -40,23 +40,26 @@ class numberedPagination {
                 )
             }
             const row = new ActionRowBuilder().addComponents(allButtons)
-            const msg = await channel.send({embeds: [embeds[0]], components: [row]})
+            await channel.send({embeds: [embeds[0]], components: [row]})
 
             client.on('interactionCreate', (int) => {
+                if (!int.isButton()) return
                 const numbers = [
-                    '1',
-                    '2',
-                    '3',
-                    '4',
-                    '5',
-                    '6',
-                    '7',
-                    '9',
-                    '10'
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    9,
+                    10
                 ]
-                numbers.forEach(number => {
-                    if (parseInt(int.customId) === number) return
-                })
+                let bool;
+                for (const number of numbers) {
+                    bool = parseInt(int.customId) === number
+                }
+                if (!bool) return
                 const newIndex = parseInt(int.customId) - 1
                 int.update(int.message.edit({embeds: [embeds[newIndex]], components: [row]}))
             })

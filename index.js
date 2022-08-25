@@ -73,11 +73,7 @@ class pagination {
                         if (currentPage === embeds.length) currentPage = 0
 
                     }
-                    int.message.edit({embeds: [embeds[currentPage]], components: [row]})
-                    int.reply('Page turned!')
-                    setTimeout(() => {
-                        int.deleteReply()
-                    }, 500)
+                    int.reply(int.message.edit({embeds: [embeds[currentPage]], components: [row]}))
 
                 })
             }

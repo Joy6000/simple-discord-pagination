@@ -5,6 +5,8 @@
   - [Inside Your Command](#inside-your-command)
 - [Why Use This Package?](#why-use-simpler-discord-pagination)
   - [RLP](#RLP)
+  - [BIP](#BIP)
+  - [NBIP](#NBIP)
 
 # Discord Pagination!
 ## Getting Started

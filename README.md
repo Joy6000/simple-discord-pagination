@@ -1,3 +1,11 @@
+# Table of Contents
+- [Main](#discord-pagination)
+  - [Getting Started](#getting-started)
+  - [Clean Updating](#clean-updates)
+  - [Inside Your Command](#inside-your-command)
+- [Why Use This Package?](#why-use-simpler-discord-pagination)
+  - [RLP](#RLP)
+
 # Discord Pagination!
 ## Getting Started
 ```

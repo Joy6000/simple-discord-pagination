@@ -1,48 +1,68 @@
 # Discord Pagination!
 ## Getting Started
-```js
-npm install simpler-discord-pagination
+```
+npm i simpler-discord-pagination
+```
+## Clean Updates
+```
+npm r simpler-discord-pagination
+npm i simpler-discord-pagination
 ```
 ## Inside your command
-### TypeScript
-```ts
-    import { pagination } from 'simpler-discord-pagination'
-    const embed1 = {
-        title: 'One'
-    }
-    const embed2 = {
-        title: 'Two'
-    }
-
-    new pagination({
-        embeds: [embded1, embed2],
-        channel: {}, // Channel Object Goes Here,
-        emojis: [],// There is no need to use this. Only if you want to change them. The emojis are built into the package.
-        timeout: 60000,// Must be an Integer. No need for this either. It's built in too. Change it if you want.
-        buttons: Boolean, //True or False goes here. Automatic to false.
-        client: Discord-Client // please pass in your discord.js client to make use of buttons.
-    }).newPagination() 
-```
-### JavaScript
 ```js
-    const { pagination } = require('simpler-discord-pagination')
-    const embed1 = {
-        title: 'One'
-    }
-    const embed2 = {
-        title: 'Two'
-    }
+    const paginator = require('simpler-discord-paginator')
 
-    new pagination({
-        embeds: [embded1, embed2],
-        channel: {}, // Channel Object Goes Here.
-        emojis: [],// There is no need to use this. Only if you want to change them. The emojis are built into the package.
-        timeout: 60000,// Must be an Integer. No need for this either. It's built in too. Change it if you want.
-        buttons: Boolean, //True or False goes here. Automatic to false. 
-        client: Discord-Client // please pass in your discord.js client to make use of buttons.
-    }).newPagination() 
+    // must have a Discord.js client
+    let embeds = [
+        {
+            title: 'First'
+        },
+        {
+            title: 'Second'
+        },
+        {
+            title: 'Third'
+        }
+    ]
+    // Legacy Reaction Pagination
+    new paginator.arrowPagination({
+        embeds: embeds,
+        channel: {}, // A discord channel object. Such as Interaction.channel or Message.channel
+        emojis: [], //uneeded! Emojis are provided for you but if you wish to change them you can. Maximum two.
+        timeout: Int, // Also uneeded! You may change this though the default is 60 seconds.
+    }).paginate() // that's it!!
+
+
+    // Button Interaction Pagination
+    // No more complicated as the last! For you, anyways.
+
+    new paginator.buttonPagination({
+        embeds: embeds,
+        channel: {}, // Discord channel object like the legacy one.
+        client: {}, // Your discord Client instance!!! 
+        timeout: Int, //Uneeded like the last time. No need to call this at all other than to change the amount of time before buttons cease collecting.
+    }).paginate() // done !!
+
+    // Numbered Button Interaction Pagination
+    // Actually the lest complicated one on my end. 
+    // Still not complicated at all for you!!!
+
+    new paginator.numberedPagination({
+        client: {}, // Discord.js client instance!
+        channel: {}, // Channel object! This is where the message is sent btw.
+        embeds: embeds,
+        timeout: Int // uneeded
+    }).paginate() // this is literally everything required from you!! I handle the rest.
 ```
 # Why use simpler-discord-pagination?
-simpler-discord-pagination simplified the traditional discord-pagination. We did this by utilizing a class, which is essentially a fancy function.
+The simpler-discord-pagination package is an extremely powerful npm package used for discord.js. Our goal is to make pagination easier and simple. 
+Currently, we support **3** different types of paginations. A **R**egular **L**egacy **P**agination (RLP), a **B**utton **I**nteraction **P**agination (BIP),
+and a **N**umbered **B**utton **I**nteraction **P**agination (NBIP)
+### RLP
+RLP will use reaction arrows to navigate the pages
+### BIP
+BIP uses buttons to navigate the pages
+### NBIP 
+Uses up to 10 buttons to navigate the pages. Can be used to easily and quickly go from Page 3 > Page 7.
 # FAQ
 ## No FAQ Yet! Contact me on Discord at stop.ts#0894 if you have any questions

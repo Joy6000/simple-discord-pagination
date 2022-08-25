@@ -54,7 +54,7 @@ class buttonPagination {
                 if (index === embeds.length) index = 0
 
             }
-            int.reply(int.message.edit({embeds: [embeds[index]], components: [row]}))
+            int.update(int.message.edit({embeds: [embeds[index]], components: [row]}))
 
         })
     }

@@ -22,7 +22,7 @@ npm i simpler-discord-pagination
 ```
 ## Inside your command
 ```js
-    const paginator = require('simpler-discord-paginator')
+    const paginator = require('simpler-discord-pagination')
 
     // must have a Discord.js client
     let embeds = [
@@ -80,7 +80,7 @@ RLP will use reaction arrows to navigate the pages
 ### BIP
 BIP uses buttons to navigate the pages
 ### NBIP 
-Uses up to 10 buttons to navigate the pages. Can be used to easily and quickly go from Page 3 > Page 7.
+Uses up to 25 buttons to navigate the pages. Can be used to easily and quickly go from Page 3 > Page 7.
 # FAQ
 ## No FAQ Yet! Contact me on Discord at stop.ts#0894 if you have any questions
 # TODO 

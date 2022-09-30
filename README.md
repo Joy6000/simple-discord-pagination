@@ -13,16 +13,16 @@
 # Discord Pagination!
 ## Getting Started
 ```
-npm i simpler-discord-pagination
+npm i simpler-discord-paginate
 ```
 ## Clean Updates
 ```
-npm r simpler-discord-pagination
-npm i simpler-discord-pagination
+npm r simpler-discord-paginate
+npm i simpler-discord-paginate
 ```
 ## Inside your command
 ```js
-    const paginator = require('simpler-discord-pagination')
+    const paginator = require('simpler-discord-paginate')
 
     // must have a Discord.js client
     let embeds = [

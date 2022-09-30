@@ -10,16 +10,30 @@ class arrowPagination {
         this.emojis = options.emojis
         this.channel = options.channel
         this.timeout = options.timeout
-        this.pageDisplay = options.pageDisplay // Functionality Will Be Added 3.1.0
+        this.pageDisplay = options.pageDisplay
     }
     /**
      * No need to pass anything in here!!
      */
     async paginate() {
         this.emojis = ['⬅', '➡']
-        const { embeds, emojis, channel, timeout } = this;
+        const { embeds, emojis, channel, timeout, pageDisplay } = this;
         let index = 0;
         if (!channel) console.warn('Simpler Discord Pagination > Missing Channel!')
+
+        if(pageDisplay) {
+            for (const embed of embeds) {
+                if (embed.footer) {
+                    embed.footer.text += ` • Page ${embeds.indexOf(embed) + 1}`
+                } else {
+                    embed.footer = {
+                        text: `Page ${embeds.indexOf(embed) + 1}`
+                    }
+                }
+            }
+        }
+
+
         const msg = await channel.send({ embeds: [embeds[index]] })
         await msg.react(emojis[0])
         await msg.react(emojis[1])

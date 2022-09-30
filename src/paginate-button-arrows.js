@@ -11,7 +11,7 @@ class buttonPagination {
         this.channel = options.channel
         this.timeout = options.timeout
         this.embeds = options.embeds
-        this.pageDisplay = options.pageDisplay // Functionality Will Be Added 3.1.0
+        this.pageDisplay = options.pageDisplay
     }
 
     /**
@@ -19,9 +19,23 @@ class buttonPagination {
      * @returns Message
      */
     async paginate() {
-        let {client, channel, embeds, timeout} = this
+        let {client, channel, embeds, timeout, pageDisplay} = this
         if (!client) return console.warn('Simpler Discord Pagination > Missing Client!')
         if (!channel) return console.warn('Simpler Discord Pagination > Missing Channel!')
+        if(!pageDisplay) pageDisplay = false;
+
+        if(pageDisplay) {
+            for (const embed of embeds) {
+                if (embed.footer) {
+                        embed.footer.text += ` • Page ${embeds.indexOf(embed) + 1}`
+                } else {
+                    embed.footer = {
+                        text: `Page ${embeds.indexOf(embed) + 1}`
+                    }
+                }
+            }
+        }
+
         let index = 0;
         const {ActionRowBuilder, ButtonBuilder, ButtonStyle} = require('discord.js')
         const {Primary} = ButtonStyle
@@ -38,6 +52,7 @@ class buttonPagination {
 
         const row = new ActionRowBuilder().addComponents(buttons)
         const msg = await channel.send({embeds: [embeds[0]], components: [row]})
+        row.components[0].setDisabled(true)
 
         client.on('interactionCreate', (int) => {
             if (!int.isButton() && !int.message.author.id !== client.id) return
@@ -53,6 +68,19 @@ class buttonPagination {
                 }
                 if (index === embeds.length) index = 0
 
+            }
+
+            if(index === embeds.length - 1) {
+                row.components[1].setDisabled(true)
+            }
+            if(index < embeds.length - 1) {
+                row.components[1].setDisabled(false)
+            }
+            if(index === 0) {
+                row.components[0].setDisabled(true)
+            }
+            if (index > 0) {
+                row.components[0].setDisabled(false)
             }
             int.update({embeds: [embeds[index]], components: [row]})
             return {client, channel, embeds, timeout, msg}

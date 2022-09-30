@@ -22,10 +22,27 @@ class numberedPagination {
      */
     async paginate() {
         try {
-            let {client, channel, embeds} = this
+            let { client, channel, embeds, pageDisplay } = this
             if (!client) return console.warn('Simpler Discord Pagination > Missing Client!')
             if (!channel) return console.warn('Simpler Discord Pagination > Missing Channel!')
-            if (embeds.length > 10) embeds.length = 10;
+            if (embeds.length > 25) {
+                console.warn(`Simpler Discord Pagination > 25 Embeds expected, got ${embeds.length}`)
+                embeds.length = 25;
+            }
+
+            if(pageDisplay) {
+                for (const embed of embeds) {
+                    if (embed.footer) {
+                        embed.footer.text += ` • Page ${embeds.indexOf(embed) + 1}`
+                    } else {
+                        embed.footer = {
+                            text: `Page ${embeds.indexOf(embed) + 1}`
+                        }
+                    }
+                }
+            }
+
+
 
             let allButtons = [];
             let index;

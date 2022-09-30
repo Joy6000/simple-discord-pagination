@@ -7,6 +7,8 @@
   - [RLP](#RLP)
   - [BIP](#BIP)
   - [NBIP](#NBIP)
+- [FAQ](#FAQ)
+- [TODO](#TODO)
 
 # Discord Pagination!
 ## Getting Started
@@ -40,6 +42,7 @@ npm i simpler-discord-pagination
         channel: {}, // A discord channel object. Such as Interaction.channel or Message.channel
         emojis: [], //uneeded! Emojis are provided for you but if you wish to change them you can. Maximum two.
         timeout: Int, // Also uneeded! You may change this though the default is 60 seconds.
+        pageDisplay: true // At the moment, this does not do anything. Basically, it will add a page number to the bottom of your embed.
     }).paginate() // that's it!!
 
 
@@ -51,6 +54,8 @@ npm i simpler-discord-pagination
         channel: {}, // Discord channel object like the legacy one.
         client: {}, // Your discord Client instance!!! 
         timeout: Int, //Uneeded like the last time. No need to call this at all other than to change the amount of time before buttons cease collecting.
+        pageDisplay: true // At the moment, this does not do anything. Basically, it will add a page number to the bottom of your embed.
+
     }).paginate() // done !!
 
     // Numbered Button Interaction Pagination
@@ -61,7 +66,9 @@ npm i simpler-discord-pagination
         client: {}, // Discord.js client instance!
         channel: {}, // Channel object! This is where the message is sent btw.
         embeds: embeds,
-        timeout: Int // uneeded
+        timeout: Int, // uneeded
+        pageDisplay: true // At the moment, this does not do anything. Basically, it will add a page number to the bottom of your embed.
+
     }).paginate() // this is literally everything required from you!! I handle the rest.
 ```
 # Why use simpler-discord-pagination?
@@ -76,3 +83,6 @@ BIP uses buttons to navigate the pages
 Uses up to 10 buttons to navigate the pages. Can be used to easily and quickly go from Page 3 > Page 7.
 # FAQ
 ## No FAQ Yet! Contact me on Discord at stop.ts#0894 if you have any questions
+# TODO 
+ - Add page display (3.1.0)
+ - Make paginations not exclusive to embeds. (4.0.0)

@@ -1,16 +1,17 @@
 const { Message, ButtonBuilder, ButtonStyle, ActionRowBuilder} = require('discord.js')
-const {placeHolderEmbeds} = require("./utils");
 class buttonPagination {
     constructor(options = {
         client: {},
         embeds: [],
         channel: {},
-        timeout: 60000
+        timeout: 60000,
+        pageDisplay: false
     }) {
         this.client = options.client
         this.channel = options.channel
         this.timeout = options.timeout
         this.embeds = options.embeds
+        this.pageDisplay = options.pageDisplay // Functionality Will Be Added 3.1.0
     }
 
     /**
@@ -18,26 +19,25 @@ class buttonPagination {
      * @returns Message
      */
     async paginate() {
-        let { client, channel, embeds, timeout } = this
+        let {client, channel, embeds, timeout} = this
         if (!client) return console.warn('Simpler Discord Pagination > Missing Client!')
         if (!channel) return console.warn('Simpler Discord Pagination > Missing Channel!')
-        if (!embeds) embeds = placeHolderEmbeds
         let index = 0;
-        const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js')
+        const {ActionRowBuilder, ButtonBuilder, ButtonStyle} = require('discord.js')
+        const {Primary} = ButtonStyle
         const buttons = [
             new ButtonBuilder()
                 .setCustomId('back')
                 .setLabel('Back')
-                .setStyle(ButtonStyle.Primary),
+                .setStyle(Primary),
             new ButtonBuilder()
                 .setCustomId('forward')
                 .setLabel('Forward')
-                .setStyle(ButtonStyle.Primary)
-
+                .setStyle(Primary)
         ]
 
         const row = new ActionRowBuilder().addComponents(buttons)
-        const msg = await channel.send({ embeds: [embeds[0]], components: [row] })
+        const msg = await channel.send({embeds: [embeds[0]], components: [row]})
 
         client.on('interactionCreate', (int) => {
             if (!int.isButton() && !int.message.author.id !== client.id) return
@@ -54,7 +54,8 @@ class buttonPagination {
                 if (index === embeds.length) index = 0
 
             }
-            int.update(int.message.edit({embeds: [embeds[index]], components: [row]}))
+            int.update({embeds: [embeds[index]], components: [row]})
+            return {client, channel, embeds, timeout, msg}
 
         })
     }

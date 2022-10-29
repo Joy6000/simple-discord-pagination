@@ -1,3 +1,6 @@
+# EOL
+<strong>This package has entered it's EOL. There will be no further updates. </strong>
+
 # Table of Contents
 - [Main](#discord-pagination)
   - [Getting Started](#getting-started)
@@ -71,6 +74,8 @@ npm i simpler-discord-paginate
 
     }).paginate() // this is literally everything required from you!! I handle the rest.
 ```
+### Timeouts
+You are going to need to implement timeouts on your lonesome.
 # Why use simpler-discord-pagination?
 The simpler-discord-pagination package is an extremely powerful npm package used for discord.js. Our goal is to make pagination easier and simple. 
 Currently, we support **3** different types of paginations. A **R**egular **L**egacy **P**agination (RLP), a **B**utton **I**nteraction **P**agination (BIP),
